@@ -23,13 +23,4 @@ A full-stack MERN app that uses groq ai API to generate captions, detect objects
 - Full history saved to MongoDB (view + delete)
 - Dark editorial UI
 
----
-
-## API Endpoints
-
-| Method | Route | Description |
-|--------|-------|-------------|
-| POST | `/api/analyze` | Analyze an image (base64) |
-| GET | `/api/analyze` | Fetch last 20 analyses |
-| DELETE | `/api/analyze/:id` | Delete an analysis |
 
