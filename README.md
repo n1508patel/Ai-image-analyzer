@@ -33,7 +33,3 @@ A full-stack MERN app that uses groq ai API to generate captions, detect objects
 | GET | `/api/analyze` | Fetch last 20 analyses |
 | DELETE | `/api/analyze/:id` | Delete an analysis |
 
----
-
-## License
-MIT
