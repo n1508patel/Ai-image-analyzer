@@ -7,7 +7,6 @@ const app = express();
 
 app.use(express.json({ limit: "50mb" }));
 
-// MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
   console.log("MongoDB Connected");
@@ -23,13 +22,10 @@ mongoose.connection.once("open", () => {
   );
 
 });
-
-// Routes
 const analysisRoutes = require("./routes/analysis");
 
 app.use("/api/analyze", analysisRoutes);
 
-// Server
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
