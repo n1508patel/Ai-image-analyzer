@@ -3,10 +3,6 @@ require("dotenv").config();
 const axios = require("axios");
 const Analysis = require("../models/Analysis");
 
-// ===============================
-// POST /api/analyze
-// Analyze image using Groq Vision
-// ===============================
 const analyzeImage = async (req, res) => {
   try {
 
@@ -16,7 +12,7 @@ const analyzeImage = async (req, res) => {
       imageName,
     } = req.body;
 
-    // Validation
+    
     if (!imageBase64 || !mediaType) {
       return res.status(400).json({
         success: false,
@@ -24,7 +20,7 @@ const analyzeImage = async (req, res) => {
       });
     }
 
-    // Prompt
+    
     const prompt = `
 Analyze this image thoroughly and respond ONLY with valid JSON.
 
@@ -38,7 +34,6 @@ Analyze this image thoroughly and respond ONLY with valid JSON.
 }
 `;
 
-    // Groq API Call
     const response = await axios.post(
       "https://api.groq.com/openai/v1/chat/completions",
 
@@ -79,7 +74,7 @@ Analyze this image thoroughly and respond ONLY with valid JSON.
       }
     );
 
-    // Extract text
+    
     console.log("FULL GROQ RESPONSE:");
 console.log(JSON.stringify(response.data, null, 2));
 
@@ -88,7 +83,7 @@ const text =
 
 console.log("AI TEXT:");
 console.log(text);
-    // Clean markdown
+   
     const clean = text
       .replace(/```json/g, "")
       .replace(/```/g, "")
@@ -117,7 +112,7 @@ try {
     raw: clean,
   });
 }
-    // Save to MongoDB
+    
     const analysis = await Analysis.create({
 
   imageUrl:
@@ -170,9 +165,6 @@ console.log(analysis);
   }
 };
 
-// ===============================
-// GET /api/analyze
-// ===============================
 const getHistory = async (req, res) => {
   try {
 
@@ -194,9 +186,6 @@ const getHistory = async (req, res) => {
   }
 };
 
-// ===============================
-// DELETE /api/analyze/:id
-// ===============================
 const deleteAnalysis = async (req, res) => {
   try {
 
